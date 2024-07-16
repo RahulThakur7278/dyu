@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Booking Form</title>
+  <link href="/stylesheets/profile.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="container">
+    <h1 class="nav">Book Your CHEF</h1>
+    <form id="bookingForm">
+      <div class="form-group">
+        <label for="requirement">Select Requirement</label>
+        <div class="button-group" id="requirementButtons">
+          <button type="button" data-requirement="Birthday" class="requirement-button">Birthday</button>
+          <button type="button" data-requirement="Kitty" class="requirement-button">Kitty</button>
+          <button type="button" data-requirement="Occasion" class="requirement-button">Occasion</button>
+          <button type="button" data-requirement="Gathering" class="requirement-button">Gathering</button>
+          <button type="button" data-requirement="Other" class="requirement-button">Other</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="meal">Select Meal</label>
+        <div class="button-group" id="mealButtons">
+          <button type="button" data-meal="Breakfast" class="meal-button">Breakfast</button>
+          <button type="button" data-meal="Lunch" class="meal-button">Lunch</button>
+          <button type="button" data-meal="Snacks" class="meal-button">Snacks</button>
+          <button type="button" data-meal="Dinner" class="meal-button">Dinner</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="people">No of people</label>
+        <p>Contact to select more than 20</p>
+        <div class="input-group">
+          <button type="button" id="decreasePeople" class="people-button">-</button>
+          <input type="number" id="people" name="people" value="4" min="1" max="20">
+          <button type="button" id="increasePeople" class="people-button">+</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="start-date">Start Date</label>
+        <div class="input-group">
+          <input type="date" id="start-date" name="start-date">
+          <select id="start-time" name="start-time">
+            <option value="">Select Start Time</option>
+            <option value="08:00">08:00</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="end-date">End Date</label>
+        <div class="input-group">
+          <input type="date" id="end-date" name="end-date">
+          <select id="end-time" name="end-time">
+            <option value="">Select End Time</option>
+            <option value="08:00">08:00</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="additional-requirements">Additional Requirements</label>
+        <div class="button-group" id="additionalRequirementButtons">
+          <button type="button" data-requirement="Cleaner" class="additional-requirement-button">Cleaner</button>
+          <button type="button" data-requirement="Utensils" class="additional-requirement-button">Utensils</button>
+          <button type="button" data-requirement="Cutlery" class="additional-requirement-button">Cutlery</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="submit-button">Continue</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    // scripts.js
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const requirementButtons = document.querySelectorAll('.requirement-button');
+      const mealButtons = document.querySelectorAll('.meal-button');
+      const additionalRequirementButtons = document.querySelectorAll('.additional-requirement-button');
+      const decreasePeople = document.getElementById('decreasePeople');
+      const increasePeople = document.getElementById('increasePeople');
+      const peopleInput = document.getElementById('people');
+
+      requirementButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          requirementButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+        });
+      });
+
+      mealButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          mealButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+        });
+      });
+
+      additionalRequirementButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          button.classList.toggle('active');
+        });
+      });
+
+      decreasePeople.addEventListener('click', () => {
+        const value = parseInt(peopleInput.value, 10);
+        if (value > 1) {
+          peopleInput.value = value - 1;
+        }
+      });
+
+      increasePeople.addEventListener('click', () => {
+        const value = parseInt(peopleInput.value, 10);
+        if (value < 20) {
+          peopleInput.value = value + 1;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
